@@ -45,6 +45,25 @@ export default function Login() {
       console.log(error)
     });
     }
+
+    function submitVal3(){
+        // let e=document.getElementsByTagName('input')[0].value
+        // let p=document.getElementsByTagName('input')[1].value
+        // console.log(e)
+        // console.log(p)
+        signInWithEmailAndPassword(auth,'csb@gmail.com','Csb@12345')
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      console.log('logged in u3')
+      setUserName('u3')
+      nav('/main')
+    })
+    .catch((error) => {
+      console.log(error)
+    });
+    }
+
   return (
     <div>
     Login
@@ -53,6 +72,7 @@ export default function Login() {
     <input type={'text'} name='password' />
     <button onClick={submitVal1}>submit1</button>
     <button onClick={submitVal2}>submit2</button>
+    <button onClick={submitVal3}>submit3</button>
     </div>
   )
 }
