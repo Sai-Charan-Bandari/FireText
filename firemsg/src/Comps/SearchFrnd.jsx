@@ -20,11 +20,7 @@ export default function SearchFrnd({flist,setflist}) {
      //it means frnd is not in flist...needs to be added, new chat need to be created with the 2 ids
      //querying and appending flist in state,db
      queryUser(p)
-     //now create chat in rdb
-     let url = userName.uid > frndName.uid ? userName.uid+frndName.uid : frndName.uid+userName.uid
-      set(ref(rdb, `/chats/${url}`), {
-        0:'Welcome...'
-    });
+     
   }
 
 async function queryUser(p){
@@ -37,10 +33,22 @@ async function queryUser(p){
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.id, " => ", doc.data());
         updateFrndList(doc.id,doc.data())
-        
+        createNewChat(doc.id)
       });
   }catch(e){
     console.log(e)
+  }
+}
+
+function createNewChat(frndid){
+  //now create chat in rdb using user id and frnd id
+  let url = userName.uid > frndid ? userName.uid+frndid : frndid+userName.uid
+  try{
+  set(ref(rdb, `/chats/${url}`), {
+    0:'Welcome...'
+  });
+  }catch(e){
+  console.log("chats appending error : ",e)
   }
 }
 
@@ -64,7 +72,7 @@ async function updateFrndList(newId,newfrnd){
       })
     });
     //appending flist
-    setflist([...flist,newfrnd])
+    setflist([...flist,{email:newfrnd.email , uid:newId}])
   }catch(e){
     console.log(e)
   }
