@@ -38,7 +38,7 @@ export default function Messages() {
 const addMsg = (text) => {
     let url = userName.uid > frndName.uid ? userName.uid+frndName.uid : frndName.uid+userName.uid
     update(ref(rdb,`/chats/${url}`),{
-        [msgArr.length]:text
+        [msgArr.length]:{text:text, email:userName.email}
     })
   };
 
@@ -64,10 +64,10 @@ const addMsg = (text) => {
     {frndName.email!=''
     ?
     <>
-    <div>{msgArr.map((e,i)=>
-    <div key={i}>{e}</div>
+    <div style={{backgroundColor:'lightblue'}}>{msgArr.map((e,i)=>
+    <div key={i} style={e.email==userName.email ? {textAlign:'right'} : {textAlign:'left'}}>{e.text}</div>
     )}</div>
-    <input value={text} onChange={(e)=>settext(e.target.value)}/>
+    <input value={text} style={{clear:'both'}} onChange={(e)=>settext(e.target.value)}/>
     <button onClick={()=>{
         addMsg(text)
     }}>

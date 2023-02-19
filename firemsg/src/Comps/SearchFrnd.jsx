@@ -44,8 +44,9 @@ function createNewChat(frndid){
   //now create chat in rdb using user id and frnd id
   let url = userName.uid > frndid ? userName.uid+frndid : frndid+userName.uid
   try{
+    //key:value pair with key=url does not exist so it will be created automatically
   set(ref(rdb, `/chats/${url}`), {
-    0:'Welcome...'
+    0:{text:'Welcome...',email:userName.email}
   });
   }catch(e){
   console.log("chats appending error : ",e)
