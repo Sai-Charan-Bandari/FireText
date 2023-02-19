@@ -2,7 +2,8 @@ import './App.css'
 import Home from './Comps/Home'
 import { RecoilRoot } from 'recoil';
 import { initializeApp } from "firebase/app";
-import { getDatabase,ref, set} from "firebase/database";
+import { getDatabase} from "firebase/database";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_K,
@@ -16,6 +17,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const rdb = getDatabase(app);
+const db = getFirestore(app)
 
 function App() {
   return (
@@ -26,4 +28,4 @@ function App() {
 }
 
 export default App
-export {app,rdb}
+export {app,rdb,db}

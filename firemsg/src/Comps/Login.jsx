@@ -19,8 +19,12 @@ export default function Login() {
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
-      console.log('logged in u1')
-      setUserName('u1')
+      // console.log('logged in u1')
+      setUserName({
+        // user.email.substring(0,user.email.length-10), for setting username
+        email:user.email,
+        uid:user.uid
+      })
       nav('/main')
     })
     .catch((error) => {
@@ -37,8 +41,11 @@ export default function Login() {
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
-      console.log('logged in u2')
-      setUserName('u2')
+      // console.log('logged in u2')
+      setUserName({
+        username:user.email.substring(0,user.email.length-10),
+        uid:user.uid
+      })
       nav('/main')
     })
     .catch((error) => {
@@ -55,8 +62,11 @@ export default function Login() {
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
-      console.log('logged in u3')
-      setUserName('u3')
+      // console.log('logged in ',user.email)
+      setUserName({
+        username:user.email.substring(0,user.email.length-10),
+        uid:user.uid
+      })
       nav('/main')
     })
     .catch((error) => {
@@ -67,7 +77,7 @@ export default function Login() {
   return (
     <div>
     Login
-    {userName}
+    {userName.email}
     <input type={'text'} name='email' />
     <input type={'text'} name='password' />
     <button onClick={submitVal1}>submit1</button>

@@ -9,12 +9,12 @@ export default function MainPage() {
   const userName=useRecoilValue(user)
   const nav=useNavigate()
   useEffect(()=>{
-      if(userName==null) nav('/')
+      if(userName.email=='') nav('/')
   },[])
 
   return (
     <>
-    <div>MainPage</div>
+    <div>{userName.email}</div>
     <div style={{display:'flex'}}>
     <div>
     <FrndList />

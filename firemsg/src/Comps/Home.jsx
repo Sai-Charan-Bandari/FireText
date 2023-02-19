@@ -8,7 +8,7 @@ export default function Home() {
     const [count, setCount] = useState(0)
   return (
     <BrowserRouter>
-        <Routes initialRouteName='' >
+        <Routes >
             <Route path='/' element={<Login />}></Route>
             <Route path='/main' element={<MainPage />}></Route>
             <Route path='*' element={<PgNotFound />}></Route>

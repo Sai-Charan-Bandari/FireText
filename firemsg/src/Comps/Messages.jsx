@@ -13,31 +13,39 @@ export default function Messages() {
 // //   READ ONCE AT START
 
     useEffect(()=>{
+
     // // SNAP
-    if(userName!=null){
+    if(userName.email!=''){
     console.log("frnd naem is ",frndName)
         const sRef = ref(rdb, `chats`);
         // onValue will be called whenever a snapshot is generated in chats/ irrespective of change in frndName
         //but due to useeffect the frndName in the onValue func will be update whenever it changes
     onValue(sRef, (snapshot) => {
+        // console.log("useername",userName.uid)
+        // console.log("frndnaame",frndName.uid)
+        let url = userName.uid > frndName.uid ? userName.uid+frndName.uid : frndName.uid+userName.uid
+        // console.log("useeffect url",url)
+
       const data = snapshot.val();
-      setmsgArr(data[`u1and${frndName}`])
-      console.log("useeffect ",data[`u1and${frndName}`])
+      setmsgArr(data[url])
+    //   console.log("useeffect data",data)
+      console.log("useeffect data url",data[url])
     });
     }
     //it is observed that if we did not set this useEffect for frndName then the frndName in onValue func did not get updated
     },[frndName])
 
 const addMsg = (text) => {
-    update(ref(rdb,`/chats/u1and${frndName}`),{
+    let url = userName.uid > frndName.uid ? userName.uid+frndName.uid : frndName.uid+userName.uid
+    update(ref(rdb,`/chats/${url}`),{
         [msgArr.length]:text
     })
   };
 
 // const getMsgs=()=>{
 //     let dbref=ref(rdb)
-//             console.log("payh is : ",`chats/u1and${frndName}`)
-//             get(child(dbref, `chats/u1and${frndName}`)).then((snapshot) => {
+//             console.log("payh is : ",`chats/${url}`)
+//             get(child(dbref, `chats/${url}`)).then((snapshot) => {
 //                     if (snapshot.exists()) {
 //                         const data = snapshot.val();
 //                         setmsgArr(data)

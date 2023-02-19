@@ -2,7 +2,10 @@ import {atom} from 'recoil'
 
 let user=atom({
     key:'user',
-    default:null
+    default:{
+        email:'',
+        uid:''
+    }
 })
 
 //actually u dont neeed msgarr as global 
@@ -14,6 +17,9 @@ let messageArray=atom({
 
 let frnd=atom({
     key:'frnd',
-    default:'u2'
+    default:{
+        email:'',
+        uid:''
+    }
 })
 export {user,messageArray,frnd}
