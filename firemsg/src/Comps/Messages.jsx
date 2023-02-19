@@ -6,7 +6,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 
 export default function Messages() {
     let [msgArr,setmsgArr]=useRecoilState(messageArray) 
-    let [frndName,setfrndName]=useRecoilState(frnd)
+    let frndName=useRecoilValue(frnd)
     let [text,settext]=useState('')
     const userName=useRecoilValue(user)
 

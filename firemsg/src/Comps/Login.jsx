@@ -83,7 +83,7 @@ export default function Login() {
     <button onClick={submitVal2}>submit2</button>
     <button onClick={submitVal3}>submit3</button>
     <div>
-      <Link to='/signup'>SignUp</Link>
+      <Link to='/signup'>Goto SignUp</Link>
     </div>
     </div>
   )

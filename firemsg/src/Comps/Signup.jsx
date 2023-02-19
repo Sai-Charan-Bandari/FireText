@@ -3,7 +3,7 @@ import {app} from '../App'
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import {useSetRecoilState } from 'recoil';
 import {user} from '../Recoil/Atoms'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,Link} from 'react-router-dom';
 import { doc, setDoc } from "firebase/firestore"; 
 import { db } from '../App';
 
@@ -49,6 +49,9 @@ export default function Signup() {
     <input type={'text'} name='email' />
     <input type={'text'} name='password' defaultValue='Abc@12345' />
     <button onClick={submitVal}>submit</button>
+    <div>
+        <Link to='/'>Goto Login</Link>
+    </div>
     </div>
   )
 }

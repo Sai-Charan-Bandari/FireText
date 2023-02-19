@@ -33,7 +33,7 @@ useEffect(()=>{
   return (
     <>
     <div>FrndList</div>
-    <SearchFrnd />
+    <SearchFrnd flist={flist} setflist={setflist} />
     <div>{flist.map((e,i)=>
     <button key={i} style={{display:'block'}} onClick={()=>{
         setfrndName(e)
