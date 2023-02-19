@@ -3,6 +3,7 @@ import { useState } from 'react'
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import Login from './Login'
 import MainPage from './MainPage'
+import Signup from './Signup'
 
 export default function Home() {
     const [count, setCount] = useState(0)
@@ -10,6 +11,7 @@ export default function Home() {
     <BrowserRouter>
         <Routes >
             <Route path='/' element={<Login />}></Route>
+            <Route path='/signup' element={<Signup />}></Route>
             <Route path='/main' element={<MainPage />}></Route>
             <Route path='*' element={<PgNotFound />}></Route>
         </Routes>

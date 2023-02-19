@@ -18,6 +18,8 @@ let getUserData=async()=>{
         let dataObj=docSnap.data()
       console.log("Document data:", dataObj);
       setflist(dataObj['frnds'])
+      //there's a chance that the frnds list is empty...especially for new users
+      if(dataObj.frnds.length>0)
       setfrndName(dataObj.frnds[0])
     } else {
       // doc.data() will be undefined in this case

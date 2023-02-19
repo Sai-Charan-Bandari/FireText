@@ -1,13 +1,13 @@
 import React from 'react'
 import {app} from '../App'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useRecoilState } from 'recoil';
+import {useSetRecoilState } from 'recoil';
 import {user} from '../Recoil/Atoms'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,Link} from 'react-router-dom';
 
 export default function Login() {
   const auth = getAuth(app);
-  const [userName,setUserName]=useRecoilState(user)
+  const setUserName=useSetRecoilState(user)
   const nav=useNavigate()
 
     function submitVal1(){
@@ -43,7 +43,7 @@ export default function Login() {
       const user = userCredential.user;
       // console.log('logged in u2')
       setUserName({
-        username:user.email.substring(0,user.email.length-10),
+        email:user.email,
         uid:user.uid
       })
       nav('/main')
@@ -64,7 +64,7 @@ export default function Login() {
       const user = userCredential.user;
       // console.log('logged in ',user.email)
       setUserName({
-        username:user.email.substring(0,user.email.length-10),
+        email:user.email,
         uid:user.uid
       })
       nav('/main')
@@ -77,12 +77,14 @@ export default function Login() {
   return (
     <div>
     Login
-    {userName.email}
     <input type={'text'} name='email' />
     <input type={'text'} name='password' />
     <button onClick={submitVal1}>submit1</button>
     <button onClick={submitVal2}>submit2</button>
     <button onClick={submitVal3}>submit3</button>
+    <div>
+      <Link to='/signup'>SignUp</Link>
+    </div>
     </div>
   )
 }

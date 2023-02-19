@@ -15,7 +15,7 @@ export default function Messages() {
     useEffect(()=>{
 
     // // SNAP
-    if(userName.email!=''){
+    if(userName.email!='' && frndName.email!=''){ //frndName obj is empty => frndslist is empty
     console.log("frnd naem is ",frndName)
         const sRef = ref(rdb, `chats`);
         // onValue will be called whenever a snapshot is generated in chats/ irrespective of change in frndName
@@ -61,6 +61,9 @@ const addMsg = (text) => {
     return (
         <>
     <div>Messages</div>
+    {frndName.email!=''
+    ?
+    <>
     <div>{msgArr.map((e,i)=>
     <div key={i}>{e}</div>
     )}</div>
@@ -70,6 +73,10 @@ const addMsg = (text) => {
     }}>
     send
     </button>
+    </>
+    :
+    <div>No frnds... pls add some</div>
+    }
     </>
   )
 }
