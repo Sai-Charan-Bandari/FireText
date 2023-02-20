@@ -4,8 +4,10 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { db } from '../App'
 import { frnd, user } from '../Recoil/Atoms'
 import SearchFrnd from './SearchFrnd'
+import { useNavigate } from 'react-router-dom';
 
 export default function FrndList() {
+  const nav=useNavigate()
     let [frndName,setfrndName]=useRecoilState(frnd)
 let [flist,setflist]=useState([])
 const userName=useRecoilValue(user)
@@ -37,6 +39,7 @@ useEffect(()=>{
     <div>{flist.map((e,i)=>
     <button key={i} style={{display:'block'}} onClick={()=>{
         setfrndName(e)
+        nav('/msg')
     }}>{e.email}</button>
     )}</div>
     </>

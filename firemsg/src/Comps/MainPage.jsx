@@ -19,9 +19,9 @@ export default function MainPage() {
     <div>
     <FrndList />
     </div>
-    <div>
+    {/* <div>
     <Messages />
-    </div>
+    </div> */}
     </div>
     </>
   )

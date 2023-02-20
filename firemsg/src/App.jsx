@@ -1,4 +1,5 @@
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './Comps/Home'
 import { RecoilRoot } from 'recoil';
 import { initializeApp } from "firebase/app";

@@ -3,6 +3,12 @@ import {rdb } from '../App'
 import {child, get, onValue, ref, set, update } from "firebase/database";
 import { frnd, messageArray, user } from '../Recoil/Atoms';
 import { useRecoilState, useRecoilValue } from 'recoil';
+import Button from 'react-bootstrap/esm/Button';
+import Form from 'react-bootstrap/Form';
+import Stack from 'react-bootstrap/Stack';
+// import Container from 'react-bootstrap/Container';
+// import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col';
 
 export default function Messages() {
     let [msgArr,setmsgArr]=useRecoilState(messageArray) 
@@ -59,24 +65,38 @@ const addMsg = (text) => {
 // }  
 
     return (
-        <>
-    <div>Messages</div>
+      // <h2 className='p-3'>Signup</h2>
+    // <Stack className='p-4 rounded my-2 col-lg-4 col-10 mx-auto' style={{backgroundColor:'#060644'}} gap={3}>
+    // <Form.Control className='w-12' type={'text'} placeholder='email' />
+    // <Form.Control className='w-12' type={'text'} placeholder='password' defaultValue='Abc@12345'/>
+    // <Button variant="secondary" onClick={submitVal}>submit</Button>
+    // </Stack>
+    // <div variant="outline-secondary" >
+    //   <Link className='fs-4' to='/'>Already registered ? Goto Login</Link>
+    // </div>
+    // </div>
+      <div className='m-3'>
+    <h2 className='p-3'>Messages</h2>
     {frndName.email!=''
     ?
     <>
-    <div style={{backgroundColor:'lightblue'}}>{msgArr.map((e,i)=>
-    <div key={i} style={e.email==userName.email ? {textAlign:'right'} : {textAlign:'left'}}>{e.text}</div>
+    <div className='p-4 rounded my-2 col-lg-8 col-10 mx-auto' style={{backgroundColor:'#060644'}}>{msgArr.map((e,i)=>
+      <Button className='my-1' key={i} style={e.email==userName.email ? {float:'right',backgroundColor:'#060644',color:'white',clear:'both'} : {float:'left',backgroundColor:'white',color:'#060644',clear:'both'}}>{e.text}</Button>
     )}</div>
-    <input value={text} style={{clear:'both'}} onChange={(e)=>settext(e.target.value)}/>
-    <button onClick={()=>{
+    {/* input and search */}
+    <Stack direction="horizontal" gap={3}>
+      <div className="vr" />
+      <Button variant="outline-danger">Reset</Button>
+      <Form.Control className="me-auto" style={{clear:'both'}} value={text} onChange={(e)=>settext(e.target.value)}/>
+      <Button variant="secondary"  onClick={()=>{
         addMsg(text)
-    }}>
-    send
-    </button>
+        settext('')
+    }}>Submit</Button>
+    </Stack>
     </>
     :
     <div>No frnds... pls add some</div>
     }
-    </>
+    </div>
   )
 }

@@ -6,6 +6,9 @@ import {user} from '../Recoil/Atoms'
 import { useNavigate ,Link} from 'react-router-dom';
 import { doc, setDoc } from "firebase/firestore"; 
 import { db } from '../App';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Stack from 'react-bootstrap/Stack';
 
 export default function Signup() {
   const auth = getAuth(app);
@@ -44,13 +47,15 @@ export default function Signup() {
     }
 
   return (
-    <div>
-    Signup
-    <input type={'text'} name='email' />
-    <input type={'text'} name='password' defaultValue='Abc@12345' />
-    <button onClick={submitVal}>submit</button>
-    <div>
-        <Link to='/'>Goto Login</Link>
+    <div className='m-3'>
+    <h2 className='p-3'>Signup</h2>
+    <Stack className='p-4 rounded my-2 col-lg-4 col-10 mx-auto' style={{backgroundColor:'#060644'}} gap={3}>
+    <Form.Control className='w-12' type={'text'} placeholder='email' />
+    <Form.Control className='w-12' type={'text'} placeholder='password' defaultValue='Abc@12345'/>
+    <Button variant="secondary" onClick={submitVal}>submit</Button>
+    </Stack>
+    <div variant="outline-secondary" >
+      <Link className='fs-4' to='/'>Already registered ? Goto Login</Link>
     </div>
     </div>
   )

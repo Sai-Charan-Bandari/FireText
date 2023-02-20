@@ -4,6 +4,10 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {useSetRecoilState } from 'recoil';
 import {user} from '../Recoil/Atoms'
 import { useNavigate ,Link} from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Stack from 'react-bootstrap/Stack';
+
 
 export default function Login() {
   const auth = getAuth(app);
@@ -75,15 +79,17 @@ export default function Login() {
     }
 
   return (
-    <div>
-    Login
-    <input type={'text'} name='email' />
-    <input type={'text'} name='password' />
-    <button onClick={submitVal1}>submit1</button>
-    <button onClick={submitVal2}>submit2</button>
-    <button onClick={submitVal3}>submit3</button>
-    <div>
-      <Link to='/signup'>Goto SignUp</Link>
+    <div className='m-3'>
+    <h2 className='p-3 m'>Login</h2>
+    <Stack className='p-4 rounded my-2 col-lg-4 col-10 mx-auto' style={{backgroundColor:'#060644'}} gap={3}>
+    <Form.Control type={'text'} placeholder='email' />
+    <Form.Control type={'text'} placeholder='password' />
+    <Button variant="secondary" onClick={submitVal1}>submit</Button>
+    {/* <Button variant="secondary" onClick={submitVal2}>submit2</Button> */}
+    {/* <Button variant="secondary" onClick={submitVal3}>submit3</Button> */}
+    </Stack>
+    <div variant="outline-secondary" >
+      <Link className='fs-4' to='/signup'>New User ? Goto SignUp</Link>
     </div>
     </div>
   )
