@@ -5,6 +5,8 @@ import { db } from '../App'
 import { frnd, user } from '../Recoil/Atoms'
 import SearchFrnd from './SearchFrnd'
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Stack from 'react-bootstrap/Stack';
 
 export default function FrndList() {
   const nav=useNavigate()
@@ -34,14 +36,14 @@ useEffect(()=>{
 },[])
   return (
     <>
-    <div>FrndList</div>
     <SearchFrnd flist={flist} setflist={setflist} />
-    <div>{flist.map((e,i)=>
-    <button key={i} style={{display:'block'}} onClick={()=>{
+    <h2 className='p-3'>FrndList</h2>
+    <Stack className='col-lg-5 col-9 mx-auto'>{flist.map((e,i)=>
+    <Button key={i} style={{display:'block',backgroundColor:'#060644',marginTop:4}} onClick={()=>{
         setfrndName(e)
         nav('/msg')
-    }}>{e.email}</button>
-    )}</div>
+    }}>{e.email}</Button>
+    )}</Stack>
     </>
   )
 }

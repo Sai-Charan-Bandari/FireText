@@ -83,10 +83,10 @@ async function updateFrndList(newId,newfrnd){
 }
 
   return (
-    <div className='my-5'>
-    <h2 className='p-3 m'>Search a Friend</h2>
-    <Stack className='p-4  mx-auto horizontal' >
-    <Form.Control className="me-auto" onKeyDown={(event)=>{
+    <div className='my-5 col-lg-5 col-9 mx-auto'>
+    <h2 className='p-3'>Search a Friend</h2>
+    <Stack className='horizontal' >
+    <Form.Control className="me-auto my-2" onKeyDown={(event)=>{
       if (event.key === 'Enter') 
       submitVal()
 }}/>

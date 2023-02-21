@@ -85,8 +85,8 @@ export default function Login() {
     <Form.Control type={'text'} placeholder='email' />
     <Form.Control type={'text'} placeholder='password' />
     <Button variant="secondary" onClick={submitVal1}>submit</Button>
-    {/* <Button variant="secondary" onClick={submitVal2}>submit2</Button> */}
-    {/* <Button variant="secondary" onClick={submitVal3}>submit3</Button> */}
+    <Button variant="secondary" onClick={submitVal2}>submit2</Button>
+    <Button variant="secondary" onClick={submitVal3}>submit3</Button>
     </Stack>
     <div variant="outline-secondary" >
       <Link className='fs-4' to='/signup'>New User ? Goto SignUp</Link>
