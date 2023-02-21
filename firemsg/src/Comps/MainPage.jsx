@@ -14,7 +14,7 @@ export default function MainPage() {
 
   return (
     <>
-    <div>{userName.email}</div>
+    {/* <div>{userName.email}</div> */}
     <div style={{display:'flex'}}>
     <div>
     <FrndList />

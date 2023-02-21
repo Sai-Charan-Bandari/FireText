@@ -47,7 +47,7 @@ export default function Signup() {
     }
 
   return (
-    <div className='m-3'>
+    <div className='my-5'>
     <h2 className='p-3'>Signup</h2>
     <Stack className='p-4 rounded my-2 col-lg-4 col-10 mx-auto' style={{backgroundColor:'#060644'}} gap={3}>
     <Form.Control className='w-12' type={'text'} placeholder='email' />

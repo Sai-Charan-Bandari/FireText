@@ -79,7 +79,7 @@ export default function Login() {
     }
 
   return (
-    <div className='m-3'>
+    <div className='my-5'>
     <h2 className='p-3 m'>Login</h2>
     <Stack className='p-4 rounded my-2 col-lg-4 col-10 mx-auto' style={{backgroundColor:'#060644'}} gap={3}>
     <Form.Control type={'text'} placeholder='email' />

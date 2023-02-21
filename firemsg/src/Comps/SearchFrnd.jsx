@@ -4,6 +4,9 @@ import { db,rdb } from '../App';
 import { ref, set } from 'firebase/database';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { frnd, user } from '../Recoil/Atoms';
+import Button from 'react-bootstrap/esm/Button';
+import Form from 'react-bootstrap/Form';
+import Stack from 'react-bootstrap/esm/Stack';
 
 export default function SearchFrnd({flist,setflist}) {
   let [frndName,setfrndName]=useRecoilState(frnd)
@@ -80,10 +83,15 @@ async function updateFrndList(newId,newfrnd){
 }
 
   return (
-    <>
-    <div>SearchFrnd</div>
-    <input type={'text'} name='password'/>
-    <button onClick={submitVal}>submit</button>
-    </>
+    <div className='my-5'>
+    <h2 className='p-3 m'>Search a Friend</h2>
+    <Stack className='p-4  mx-auto horizontal' >
+    <Form.Control className="me-auto" onKeyDown={(event)=>{
+      if (event.key === 'Enter') 
+      submitVal()
+}}/>
+      <Button variant="secondary"  onClick={submitVal}>Submit</Button>
+      </Stack>
+    </div>
   )
 }
