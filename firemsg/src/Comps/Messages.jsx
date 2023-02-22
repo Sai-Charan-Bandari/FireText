@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/Form';
 import Stack from 'react-bootstrap/Stack';
 import { useNavigate } from 'react-router-dom';
 import BackButton from './BackButton';
+import Picker from 'emoji-picker-react';
 // import Container from 'react-bootstrap/Container';
 // import Row from 'react-bootstrap/Row';
 // import Col from 'react-bootstrap/Col';
@@ -17,6 +18,7 @@ export default function Messages() {
     let [msgArr,setmsgArr]=useRecoilState(messageArray) 
     let frndName=useRecoilValue(frnd)
     let [text,settext]=useState('')
+    let [showEmoji,setShowEmoji]=useState(false)
     const userName=useRecoilValue(user)
     const nav=useNavigate()
     useEffect(()=>{
@@ -75,16 +77,6 @@ const addMsg = (text) => {
 // }  
 
     return (
-      // <h2 className='p-3'>Signup</h2>
-    // <Stack className='p-4 rounded my-2 col-lg-4 col-10 mx-auto' style={{backgroundColor:'#060644'}} gap={3}>
-    // <Form.Control className='w-12' type={'text'} placeholder='email' />
-    // <Form.Control className='w-12' type={'text'} placeholder='password' defaultValue='Abc@12345'/>
-    // <Button variant="secondary" onClick={submitVal}>submit</Button>
-    // </Stack>
-    // <div variant="outline-secondary" >
-    //   <Link className='fs-4' to='/'>Already registered ? Goto Login</Link>
-    // </div>
-    // </div>
       <div className='my-2'>
     <h2 className='px-3' style={{wordBreak:'break-all'}}>
       <BackButton/>
@@ -100,9 +92,10 @@ const addMsg = (text) => {
     )}
     </div>
     {/* input and search */}
+      {showEmoji && <Picker width={300} onEmojiClick={(emojiObject,event) => addMsg(emojiObject.emoji)}/>}
     <Stack className='col-lg-10 col-8 my-2' direction="horizontal" gap={2} style={{clear:'both'}}>
-      <Button className='col-2 col-lg-1' variant="outline-danger">":)"</Button>
-      <Form.Control className="me-auto col-lg-6 col-6" style={{clear:'both'}} value={text} onChange={(e)=>settext(e.target.value)}  
+      <Button className='col-2 col-lg-1 px-0' variant="outline-danger" onClick={()=>setShowEmoji(!showEmoji)}><img width={20} height={20} src="https://cdn-icons-png.flaticon.com/128/3106/3106048.png" alt="" /></Button>
+      <Form.Control className="me-auto col-lg-7 col-6" style={{clear:'both'}} value={text} onChange={(e)=>settext(e.target.value)}  
       onKeyDown={(event)=>{
       if (event.key === 'Enter'){
         addMsg(text)
