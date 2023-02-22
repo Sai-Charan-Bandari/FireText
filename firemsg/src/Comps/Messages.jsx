@@ -9,6 +9,7 @@ import Stack from 'react-bootstrap/Stack';
 import { useNavigate } from 'react-router-dom';
 import BackButton from './BackButton';
 import Picker from 'emoji-picker-react';
+import Modal from 'react-bootstrap/Modal';
 // import Container from 'react-bootstrap/Container';
 // import Row from 'react-bootstrap/Row';
 // import Col from 'react-bootstrap/Col';
@@ -45,13 +46,16 @@ export default function Messages() {
       setmsgArr(data[url])
     //   console.log("useeffect data",data)
       console.log("useeffect data url",data[url])
-
-      //WHENEVER WE RECEIVE A NEW MSG WE WILL SCROLL DOWN
-      ref1.current.scrollIntoView({behavior:'smooth'})
     });
     }
     //it is observed that if we did not set this useEffect for frndName then the frndName in onValue func did not get updated
     },[frndName])
+
+    useEffect(()=>{
+        //WHENEVER WE RECEIVE A NEW MSG WE WILL SCROLL DOWN
+        if(msgArr.length>0)
+        ref1.current.scrollIntoView({behavior:'smooth'})
+    },[msgArr])
 
 const addMsg = (text) => {
     let url = userName.uid > frndName.uid ? userName.uid+frndName.uid : frndName.uid+userName.uid
@@ -92,7 +96,12 @@ const addMsg = (text) => {
     )}
     </div>
     {/* input and search */}
-      {showEmoji && <Picker width={300} onEmojiClick={(emojiObject,event) => addMsg(emojiObject.emoji)}/>}
+      <Modal show={showEmoji}>
+      <Picker width={300} onEmojiClick={(emojiObject,event) =>{
+        addMsg(emojiObject.emoji)
+        setShowEmoji(false)
+        }}/>
+        </Modal>
     <Stack className='col-lg-10 col-8 my-2' direction="horizontal" gap={2} style={{clear:'both'}}>
       <Button className='col-2 col-lg-1 px-0' variant="outline-danger" onClick={()=>setShowEmoji(!showEmoji)}><img width={20} height={20} src="https://cdn-icons-png.flaticon.com/128/3106/3106048.png" alt="" /></Button>
       <Form.Control className="me-auto col-lg-7 col-6" style={{clear:'both'}} value={text} onChange={(e)=>settext(e.target.value)}  

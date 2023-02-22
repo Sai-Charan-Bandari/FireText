@@ -5,9 +5,14 @@ in SearchFrnd what if we provide an email which doesnt exist
 else if frnd already exists then bring that frnd to top of the frnds list i.e 0 index
 validation in login and signup ... all inputs r filled
 add back buttons
-the text menu in msgs comp should be at bottom
+//the text menu in msgs comp should be at bottom
+but it is going to last but one msg i guess
 make that emoji button as mark-as-impt button..then the msg will be displayed in orange color
 group chat
+//ERRORS
+scrollToView
+clickiing emoji wont go DOWN
 //make top menu and bottom bar sticky 
 //unable to set responsive height for scroll msgs..added media queries
 //make flist as global state so that it wont load again nd again and make sure to update it onSnapshot
+//FIREBASE ERROR IN GITHUB DEPLOY
