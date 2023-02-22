@@ -5,7 +5,28 @@
   text-align: center;
 }
 
+#scr::-webkit-scrollbar {
+  display: none;
+}
 
+/* Hide scrollbar for IE, Edge and Firefox */
+#scr {
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
+
+overflow:scroll;
+}
+
+@media screen and (min-device-width: 300px){
+  #scr{
+    max-height:600px;
+  }
+  }
+@media screen and (min-device-width: 1200px) {
+  #scr{
+    max-height:500px;
+  }
+}
 
 .card {
   padding: 2em;

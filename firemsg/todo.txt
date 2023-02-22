@@ -1,3 +1,0 @@
-need to modify func in searchfrnd 
-in SearchFrnd what if we provide an email which doesnt exist
-validation in login and signup ... all inputs r filled

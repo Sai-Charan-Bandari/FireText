@@ -31,13 +31,19 @@ async function queryUser(p){
     const Ref = collection(db, "Users");
      const q = query(Ref, where("email", "==", p));
      const querySnapshot = await getDocs(q);
-     //this loop executes only once...
+     //this loop executes only once... if there is a user
+     let check=0
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.id, " => ", doc.data());
         updateFrndList(doc.id,doc.data())
         createNewChat(doc.id)
+        check++
       });
+      if(check==0){
+        //no user found
+        alert("User not found")
+      }
   }catch(e){
     console.log(e)
   }
@@ -83,7 +89,7 @@ async function updateFrndList(newId,newfrnd){
 }
 
   return (
-    <div className='my-5 col-lg-5 col-9 mx-auto'>
+    <div className='my-3  col-lg-5 col-9 mx-auto'>
     <h2 className='p-3'>Search a Friend</h2>
     <Stack className='horizontal' >
     <Form.Control className="me-auto my-2" onKeyDown={(event)=>{

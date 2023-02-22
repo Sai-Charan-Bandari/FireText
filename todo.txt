@@ -1,0 +1,13 @@
+//add onAuthState.. to persist data on reload
+//need to modify func in searchfrnd 
+//when u add a person as frnd .. the frnd's flist will not be notified/updated if he is exactly at the flist pg ..he needs to reload/re-render that pg
+in SearchFrnd what if we provide an email which doesnt exist
+else if frnd already exists then bring that frnd to top of the frnds list i.e 0 index
+validation in login and signup ... all inputs r filled
+add back buttons
+the text menu in msgs comp should be at bottom
+make that emoji button as mark-as-impt button..then the msg will be displayed in orange color
+group chat
+//make top menu and bottom bar sticky 
+//unable to set responsive height for scroll msgs..added media queries
+//make flist as global state so that it wont load again nd again and make sure to update it onSnapshot

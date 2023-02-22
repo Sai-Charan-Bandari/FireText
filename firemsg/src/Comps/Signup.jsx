@@ -43,6 +43,7 @@ export default function Signup() {
     })
     .catch((error) => {
       console.log(error)
+      alert("Signup error : try a different/valid email, proper password")
     });
     }
 
@@ -51,7 +52,8 @@ export default function Signup() {
     <h2 className='p-3'>Signup</h2>
     <Stack className='p-4 rounded my-2 col-lg-4 col-10 mx-auto' style={{backgroundColor:'#060644'}} gap={3}>
     <Form.Control className='w-12' type={'text'} placeholder='email' />
-    <Form.Control className='w-12' type={'text'} placeholder='password' defaultValue='Abc@12345'/>
+    <Form.Control className='w-12' type={'text'} placeholder='password' />
+    {/* <Form.Control className='w-12' type={'text'} placeholder='password' defaultValue='Abc@12345'/> */}
     <Button variant="secondary" onClick={submitVal}>submit</Button>
     </Stack>
     <div variant="outline-secondary" >

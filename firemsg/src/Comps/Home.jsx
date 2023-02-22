@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState } from 'react'
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import HeaderMenu from './HeaderMenu'
 import Login from './Login'
@@ -9,7 +8,6 @@ import Profile from './Profile'
 import Signup from './Signup'
 
 export default function Home() {
-    const [count, setCount] = useState(0)
   return (
     <BrowserRouter>
     <HeaderMenu />

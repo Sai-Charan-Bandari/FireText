@@ -37,7 +37,7 @@ useEffect(()=>{
   return (
     <>
     <SearchFrnd flist={flist} setflist={setflist} />
-    <h2 className='p-3'>FrndList</h2>
+    <h2 className='px-3 py-2'>Friends List</h2>
     <Stack className='col-lg-5 col-9 mx-auto'>{flist.map((e,i)=>
     <Button key={i} style={{display:'block',backgroundColor:'#060644',marginTop:4}} onClick={()=>{
         setfrndName(e)

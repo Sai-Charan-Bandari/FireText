@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {rdb } from '../App'
-import {child, get, onValue, ref, set, update } from "firebase/database";
+import { onValue, ref, update } from "firebase/database";
 import { frnd, messageArray, user } from '../Recoil/Atoms';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import Button from 'react-bootstrap/esm/Button';
 import Form from 'react-bootstrap/Form';
 import Stack from 'react-bootstrap/Stack';
 import { useNavigate } from 'react-router-dom';
+import BackButton from './BackButton';
 // import Container from 'react-bootstrap/Container';
 // import Row from 'react-bootstrap/Row';
 // import Col from 'react-bootstrap/Col';
 
 export default function Messages() {
+  let ref1=useRef() //for scrolling to bottom
     let [msgArr,setmsgArr]=useRecoilState(messageArray) 
     let frndName=useRecoilValue(frnd)
     let [text,settext]=useState('')
@@ -41,6 +43,9 @@ export default function Messages() {
       setmsgArr(data[url])
     //   console.log("useeffect data",data)
       console.log("useeffect data url",data[url])
+
+      //WHENEVER WE RECEIVE A NEW MSG WE WILL SCROLL DOWN
+      ref1.current.scrollIntoView({behavior:'smooth'})
     });
     }
     //it is observed that if we did not set this useEffect for frndName then the frndName in onValue func did not get updated
@@ -81,23 +86,28 @@ const addMsg = (text) => {
     // </div>
     // </div>
       <div className='my-2'>
-    <h2 className='px-3' style={{wordBreak:'break-all'}}>{frndName.email}</h2>
+    <h2 className='px-3' style={{wordBreak:'break-all'}}>
+      <BackButton/>
+    {frndName.email}</h2>
       <hr/>
     {frndName.email!=''
     ?
-    <div  className='px-4 rounded my-2 col-lg-10 col-12 mx-auto' >
-    {msgArr.map((e,i)=>
-      <Button className='my-1' key={i} style={e.email==userName.email ? {float:'right',backgroundColor:'#060644',color:'white',clear:'both'} : {float:'left',backgroundColor:'white',color:'#060644',clear:'both'}}>{e.text}</Button>
+    <div  className='px-4 rounded my-2 col-lg-10 col-12 mx-auto h-50' >
+    {/* id is assigned to hide scroll bar */}
+   <div id='scr'> 
+   {msgArr.map((e,i)=>
+      <Button ref={ref1} className='my-1' key={i} style={e.email==userName.email ? {float:'right',backgroundColor:'#060644',color:'white',clear:'both'} : {float:'left',backgroundColor:'white',color:'#060644',clear:'both'}}>{e.text}</Button>
     )}
+    </div>
     {/* input and search */}
-    <Stack className='col-lg-10 col-8' direction="horizontal" gap={2} style={{clear:'both'}}>
+    <Stack className='col-lg-10 col-8 my-2' direction="horizontal" gap={2} style={{clear:'both'}}>
       <Button className='col-2 col-lg-1' variant="outline-danger">":)"</Button>
       <Form.Control className="me-auto col-lg-6 col-6" style={{clear:'both'}} value={text} onChange={(e)=>settext(e.target.value)}  
       onKeyDown={(event)=>{
       if (event.key === 'Enter'){
         addMsg(text)
         settext('')} }}/>
-      <Button variant="secondary" className='col-lg-1 col-3' onClick={()=>{
+      <Button variant="success" className='col-lg-1 col-3' onClick={()=>{
         addMsg(text)
         settext('')
     }}>Send</Button>
